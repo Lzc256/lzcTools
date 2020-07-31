@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+## 欢迎来到 lzcTools！
+提供一些实用小工具和 API
 
-You can use the [editor on GitHub](https://github.com/Lzc256/lzcTools/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## 我们的服务
+|产品|描述|是否支持 API
+|:-:|:-:|:-:
+|lzcFriendShipLinkChecker|检查对方站点上的友情链接是否存在|是
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Lzc256/lzcTools/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## 其他有趣的网站
+|网站|描述
+|:-:|:-:
+|[lzcBlog](https://www.lzcapp.cn)|一个穷困潦倒苦逼学生的打脸日常 TwT 欢迎来此！
+|[lzcWorks](https://works.lzcapp.cn)|我的一些个人作品（Building）
+|[lzcFree](https://free.lzcapp.cn)|Some FREE information about almost everything.(Foreign Only)(Building)
+|[lzcTools](https://tools.lzcapp.cn)|提供一些实用小工具和 API（本站）
