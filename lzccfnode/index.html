@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>CloudFlare自选节点工具 - 免费 CDN 服务 - lzcCFNode - lzcTools</title>
+        <link href="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.0/css/mdui.min.css" rel="stylesheet">
+        <script src="https://cdn.bootcdn.net/ajax/libs/mdui/1.0.0/js/mdui.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            .mdui-card{width:95%;text-align:center;}
+        </style>
+    </head>
+    <body class="mdui-appbar-with-toolbar mdui-theme-primary-white mdui-theme-accent-pink">
+        <div class="mdui-appbar mdui-appbar-fixed">
+            <div class="mdui-toolbar mdui-color-theme-primary">
+                <!--a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a-->
+                <a href="javascript:;" class="mdui-typo-headline">lzcCFNode</a>
+                <div class="mdui-toolbar-spacer"></div>
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+          </div>
+        </div>
+        <br><br>
+        <center>
+            <h2>CloudFlare 自选节点工具 by <a href="https://www.lzcapp.cn">lzc</a></h2>
+            <div class="mdui-card">
+                <div class="mdui-card-content" id="lzcCFNode_SelectPanel_Before">
+                    优化地区：<select id="lzcCFNode_SelectPanel_Before_AreaSelection" class="mdui-select" onchange="lzcCFNodeFunctions_SelectPanel_Before_NodeChanged();" mdui-select><option value="china" selected>国内</option><option value="foreign" disabled>国外</option></select><br>
+                    <div id="lzcCFNode_SelectPanel_Before_PlaceSelection" style="display:none">具体地点：
+                        <select></select>
+                    </div>
+                    <br>
+                    <center><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="lzcCFNodeFunctions_SelectPanel_After_Submit();" id="lzcCFNode_SelectPanel_Before_Submit">完成</button>
+                    <div class="mdui-spinner" id="lzcCFNode_SelectPanel_Before_Spinner" style="display:none"></div></center>
+                </div>
+                <div class="mdui-card-content" id="lzcCFNode_SelectPanel_After" style="display:none">
+                    <center><h4>节点筛选完成</h4></center>
+                    <p>请在 DNS 服务商处配置以下信息（非 CloudFlare）：</p>
+                    <div class="mdui-table-fluid">
+                      <table class="mdui-table mdui-table-hoverable">
+                        <thead>
+                          <tr>
+                            <th>主机记录</th>
+                            <th>记录类型</th>
+                            <th>线路类型</th>
+                            <th>记录值</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>您期待的记录</td>
+                            <td>A</td>
+                            <td>移动</td>
+                            <td id="lzcCFNode_SelectPanel_After_Records_yidong"></td>
+                          </tr>
+                          <tr>
+                            <td>您期待的记录</td>
+                            <td>A</td>
+                            <td>联通</td>
+                            <td id="lzcCFNode_SelectPanel_After_Records_liantong"></td>
+                          </tr>
+                          <tr>
+                            <td>您期待的记录</td>
+                            <td>A</td>
+                            <td>电信</td>
+                            <td id="lzcCFNode_SelectPanel_After_Records_dianxin"></td>
+                          </tr>
+                          <tr>
+                            <td>您期待的记录</td>
+                            <td>CNAME</td>
+                            <td>默认</td>
+                            <td id="lzcCFNode_SelectPanel_After_Records_Default">您期待的记录.您的域名.cdn.cloudflare.net</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <br>
+                    <p>假如某个节点无法使用，请&nbsp;<a href="https://www.lzcapp.cn/index.php/about.html" target="_blank">联系作者</a>&nbsp;并反馈节点 IP，将第一时间更新。</p>
+                    <p>解析线路类型功能仅国内 DNS 服务商拥有，如 DNSPod 等等。假如您的 DNS 服务商为国外，请切换至国内 DNS 服务商。</p>
+                    <p>添加后，请使用 CloudFlare Partners 管理解析，比如 <a href="https://cf.9sep.org">宿云</a>。具体教程请上网搜索。</p>
+                    <p>务必添加“默认”线路，这会降低你被 CloudFlare 查出封号封域名的风险。请勿过度使用，大流量站点还是建议购买付费 CloudFlare Pro 支持官方。</p>
+                    <button class="mdui-btn mdui-btn-raised mdui-btn-icon mdui-ripple mdui-color-theme-accent" onclick="lzcCFNodeFunctions_SelectPanel_After_Submit(true);" mdui-tooltip="{content: '返回重选'}"><i class="mdui-icon material-icons">arrow_back</i></button>
+                </div>
+            </div>
+            <br>
+            <div class="mdui-card">
+                <div class="mdui-card-content" style="text-align:left;">
+                    <center>问题解答</center><br>
+                    Q1：CloudFlare 是什么？为什么要使用 CloudFlare？<br>
+                    A1：CloudFlare 是一家良心免费的 CDN 提供商，能够让您享受到网站加速、隐藏 IP、减少流量开销等功能，十分强大。<br>
+                    Q2：为什么要使用 CloudFlare 自选节点？<br>
+                    A2：CloudFlare 的免费版节点没有针对大陆作优化，每次访问都会随机分配节点，访问速度、延迟都极高，反而对网站降速，影响用户体验。自选节点可以在不付费的情况下，加速您的网站。<br>
+                    Q3：使用自选节点一定能够增加网速吗？<br>
+                    A3：不一定。您的网站速度与您的服务器带宽、位置和线路等因素相关，并不是用了自选节点就能显著优化。您网站的最终性能，还是跟您的钱包厚度有关。<br>
+                    Q4：为什么现在还不能为境外地区优化？<br>
+                    A4：因为境外 IP 太多，而作者很懒。以后可能会假如。<br>
+                    Q5：我有其他问题，如何联系作者？<br>
+                    A5：您可以转到 <a href="https://www.lzcapp.cn">我的博客</a>，在“关于”页面中寻找我的联系方式。<br>
+                    Q6：这个项目好棒，我可以移植到自己的网站上吗？<br>
+                    A6：首先这个项目不棒，其次这个项目不允许移植、解密、转载、分发。此项目的核心 JavaScript 文件已经被加密，且作了域名绑定。假如您执意移植或解密，那么它会失效。<br>
+                </div>
+            </div>
+            <br>
+            <div class="mdui-card">
+                <div class="mdui-card-content" style="text-align:center;">
+                    Powered by <a href="https://www.lzcapp.cn">lzcAPP</a>. All Rights Reserved. Project <a mdui-dialog="{target: '#lzcCFNode_Dialogs_AboutProject'}" href="javascript:;">lzcCFNode</a> Version 1.1
+                </div>
+            </div>
+        </center>
+        
+        <div class="mdui-fab-wrapper" id="lzcCFNode_Others_Wrap" mdui-fab="{trigger: 'hover'}">
+            <button class="mdui-fab mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">info_outline</i><i class="mdui-icon mdui-fab-opened material-icons">remove</i></button>
+            <div class="mdui-fab-dial">
+                <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" onclick="window.open('https://www.lzcapp.cn/index.php/donation.html');" mdui-tooltip="{content: '捐助'}"><i class="mdui-icon material-icons">attach_money</i></button>
+                <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-green" onclick="window.open('https://www.lzcapp.cn/');" mdui-tooltip="{content: '主页'}"><i class="mdui-icon material-icons">home</i></button>
+            </div>
+        </div>
+        
+        <div class="mdui-dialog" id="lzcCFNode_Dialogs_AboutProject">
+            <div class="mdui-dialog-content">
+                <center>
+                    <h2>关于 <a href="https://tools.lzcapp.cn/lzccfnode">lzcCFNode v1.1</a></h2>
+                </center>
+                    框架：<a href="https://www.mdui.org">MDUI</a><br>
+                    作者：<a href="https://www.lzcapp.cn">lzc</a><br>
+                    提示：本项目中 CloudFlare IP 数据搜集于网络，本人不保证其可用性。此项目不允许移植、转载等等，请勿自行移植、转载、解密、分发。保留所有权利。版权所有，侵权必究。
+                    
+                
+            </div>
+            <div class="mdui-dialog-actions">
+                <button class="mdui-btn mdui-ripple" mdui-dialog-close>OK</button>
+            </div>
+        </div>
+    </body>
+    <script src="index.js"></script>
+</html>
